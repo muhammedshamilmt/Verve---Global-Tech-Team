@@ -321,7 +321,7 @@ const FeaturesPage: React.FC = () => {
                                 <div className="flex gap-4"><span className="text-gray-600 select-none">5</span> <span className="pl-4"><span className="text-white">region:</span> <span className="text-emerald-400">'us-east-1'</span>,</span></div>
                                 <div className="flex gap-4"><span className="text-gray-600 select-none">6</span> <span className="pl-4"><span className="text-white">scaling:</span> <span className="text-blue-400">true</span>,</span></div>
                                 <div className="flex gap-4"><span className="text-gray-600 select-none">7</span> <span className="pl-4"><span className="text-white">env:</span> <span className="text-white">process.env.NODE_ENV</span></span></div>
-                                <div className="flex gap-4"><span className="text-gray-600 select-none">8</span> <span>{`}`}).<span className="text-amber-400">then</span>(() <span className="text-purple-400">=></span> {`{`}</span></div>
+                                <div className="flex gap-4"><span className="text-gray-600 select-none">8</span> <span>{`}`}).<span className="text-amber-400">then</span>(() <span className="text-purple-400">=&gt;</span> {`{`}</span></div>
                                 <div className="flex gap-4"><span className="text-gray-600 select-none">9</span> <span className="pl-4"><span className="text-white">console</span>.<span className="text-amber-400">log</span>(<span className="text-emerald-400">'🚀 Deployed!'</span>);</span></div>
                                 <div className="flex gap-4"><span className="text-gray-600 select-none">10</span> <span>{`}`});</span></div>
                             </div>
