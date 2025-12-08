@@ -4,7 +4,12 @@ import Button from './ui/Button';
 import StaggerText from './ui/StaggerText';
 import ScrollReveal from './ui/ScrollReveal';
 
-const WhyUsPage: React.FC = () => {
+// Added props for navigation consistency, though primarily used for "Start Project" currently.
+interface WhyUsPageProps {
+    onNavigate?: (page: string) => void;
+}
+
+const WhyUsPage: React.FC<WhyUsPageProps> = ({ onNavigate }) => {
   return (
     <div className="w-full pt-8 pb-24 relative overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -130,7 +135,12 @@ const WhyUsPage: React.FC = () => {
         {/* CTA */}
         <div className="mt-32 text-center">
             <h2 className="text-3xl font-semibold text-white mb-6">Ready to experience the difference?</h2>
-            <Button variant="primary" size="lg" className="px-10 py-4 shadow-[0_0_30px_rgba(94,234,212,0.3)]">
+            <Button 
+                variant="primary" 
+                size="lg" 
+                className="px-10 py-4 shadow-[0_0_30px_rgba(94,234,212,0.3)]"
+                onClick={() => onNavigate?.('signup')}
+            >
                 Start Your Project <ArrowRight size={18} className="ml-2" />
             </Button>
         </div>

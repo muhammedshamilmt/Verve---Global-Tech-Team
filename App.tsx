@@ -30,14 +30,17 @@ import ChangelogPage from './components/ChangelogPage';
 import LicensingPage from './components/LicensingPage';
 import CheckoutPage from './components/CheckoutPage';
 import PaymentSuccessPage from './components/PaymentSuccessPage';
+import DashboardPage from './components/DashboardPage';
+import CareersPage from './components/CareersPage';
 
 type Page = 
   | 'home' | 'about' | 'features' | 'pricing' | 'contact' 
   | 'login' | 'signup' 
   | 'forgot-password' | 'verify-otp' | 'reset-password' | 'password-success'
   | 'terms' | 'privacy'
-  | 'plans' | 'reviews' | 'why-us' | 'team' | '404' | 'changelog' | 'licensing'
-  | 'checkout' | 'payment-success';
+  | 'plans' | 'reviews' | 'why-us' | 'team' | 'careers' | '404' | 'changelog' | 'licensing'
+  | 'checkout' | 'payment-success'
+  | 'dashboard';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -49,16 +52,15 @@ const App: React.FC = () => {
   };
 
   // Define which pages are "Auth" or special pages (No Navbar/Footer)
-  const isAuthPage = [
+  // Dashboard is also a special page with its own layout
+  const isSpecialPage = [
     'login', 'signup', 
     'forgot-password', 'verify-otp', 'reset-password', 'password-success',
     'terms', 'privacy',
-    'checkout', 'payment-success' // Added checkout flow to clean layout
+    'checkout', 'payment-success',
+    'dashboard'
   ].includes(currentPage);
 
-  // 404 typically doesn't have standard nav in some designs, but let's keep it consistent or minimalist.
-  // For this design, let's keep Navbar on 404 but maybe not footer if it's full screen.
-  // Let's stick to standard layout for new pages except auth.
   const isNotFound = currentPage === '404';
 
   const renderContent = () => {
@@ -72,7 +74,8 @@ const App: React.FC = () => {
       case 'plans': return <PlansPage onNavigate={handleNavigate} />;
       case 'reviews': return <ReviewsPage />;
       case 'why-us': return <WhyUsPage />;
-      case 'team': return <TeamPage />;
+      case 'team': return <TeamPage />; // Updated to pass navigate prop in next step
+      case 'careers': return <CareersPage onNavigate={handleNavigate} />;
       case 'changelog': return <ChangelogPage />;
       case 'licensing': return <LicensingPage />;
       case '404': return <NotFoundPage onNavigate={handleNavigate} />;
@@ -88,6 +91,9 @@ const App: React.FC = () => {
       // Payment Flow
       case 'checkout': return <CheckoutPage onNavigate={handleNavigate} />;
       case 'payment-success': return <PaymentSuccessPage onNavigate={handleNavigate} />;
+
+      // Dashboard
+      case 'dashboard': return <DashboardPage onNavigate={handleNavigate} />;
 
       // Legal
       case 'terms': return <TermsPage onNavigate={handleNavigate} />;
@@ -114,33 +120,35 @@ const App: React.FC = () => {
       {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
       
       <div className={`min-h-screen bg-[#020406] text-white selection:bg-verve-accent selection:text-black relative overflow-hidden flex flex-col font-sans ${isLoading ? 'h-screen overflow-hidden' : ''}`}>
-        {/* Background Layer Group */}
-        <div className="fixed inset-0 pointer-events-none z-0">
-          <div className="absolute top-[-350px] left-1/2 -translate-x-1/2 w-[1000px] h-[800px] bg-[#0d3632] rounded-full blur-[100px] opacity-80 mix-blend-screen" />
-          <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[#1a4d47] rounded-full blur-[80px] opacity-40 mix-blend-color-dodge" />
-          <div 
-            className="absolute inset-0 opacity-[0.25]" 
-            style={{ 
-              backgroundImage: `linear-gradient(to right, rgba(94, 234, 212, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(94, 234, 212, 0.3) 1px, transparent 1px)`,
-              backgroundSize: '50px 50px',
-              maskImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, black 10%, transparent 70%)',
-              WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, black 10%, transparent 70%)'
-            }}
-          />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#020406_90%)]" />
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ filter: 'url(#noise)' }} />
-        </div>
+        {/* Background Layer Group - Only for non-dashboard pages to avoid conflict */}
+        {currentPage !== 'dashboard' && (
+          <div className="fixed inset-0 pointer-events-none z-0">
+            <div className="absolute top-[-350px] left-1/2 -translate-x-1/2 w-[1000px] h-[800px] bg-[#0d3632] rounded-full blur-[100px] opacity-80 mix-blend-screen" />
+            <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[#1a4d47] rounded-full blur-[80px] opacity-40 mix-blend-color-dodge" />
+            <div 
+              className="absolute inset-0 opacity-[0.25]" 
+              style={{ 
+                backgroundImage: `linear-gradient(to right, rgba(94, 234, 212, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(94, 234, 212, 0.3) 1px, transparent 1px)`,
+                backgroundSize: '50px 50px',
+                maskImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, black 10%, transparent 70%)',
+                WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, black 10%, transparent 70%)'
+              }}
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#020406_90%)]" />
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ filter: 'url(#noise)' }} />
+          </div>
+        )}
 
         <div className="relative z-10 flex flex-col min-h-screen">
-          {/* Only show Navbar if NOT an auth page or 404 */}
-          {!isAuthPage && !isNotFound && <Navbar onNavigate={handleNavigate} />}
+          {/* Only show Navbar if NOT a special page or 404 */}
+          {!isSpecialPage && !isNotFound && <Navbar onNavigate={handleNavigate} />}
           
-          <main className={`flex-grow flex flex-col ${!isAuthPage && !isNotFound ? 'pt-24 lg:pt-32' : ''}`}>
+          <main className={`flex-grow flex flex-col ${!isSpecialPage && !isNotFound ? 'pt-24 lg:pt-32' : ''}`}>
             {renderContent()}
           </main>
           
-          {/* Only show Footer if NOT an auth page or 404 */}
-          {!isAuthPage && !isNotFound && <Footer onNavigate={handleNavigate} />}
+          {/* Only show Footer if NOT a special page or 404 */}
+          {!isSpecialPage && !isNotFound && <Footer onNavigate={handleNavigate} />}
         </div>
       </div>
     </>

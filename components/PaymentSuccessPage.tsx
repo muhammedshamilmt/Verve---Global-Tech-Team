@@ -11,7 +11,7 @@ const PaymentSuccessPage: React.FC<PaymentSuccessPageProps> = ({ onNavigate }) =
   // Confetti or redirect logic could go here
   useEffect(() => {
     // Optional: Auto redirect after 10s
-    // const timer = setTimeout(() => onNavigate('home'), 10000);
+    // const timer = setTimeout(() => onNavigate('dashboard'), 10000);
     // return () => clearTimeout(timer);
   }, [onNavigate]);
 
@@ -62,7 +62,7 @@ const PaymentSuccessPage: React.FC<PaymentSuccessPageProps> = ({ onNavigate }) =
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                 <Button 
-                    onClick={() => onNavigate('home')}
+                    onClick={() => onNavigate('dashboard')}
                     className="w-full sm:w-auto px-8 py-3 bg-white text-black hover:bg-gray-200"
                 >
                     Go to Dashboard <ArrowRight size={16} className="ml-2" />

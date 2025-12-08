@@ -4,7 +4,12 @@ import Button from './ui/Button';
 import StaggerText from './ui/StaggerText';
 import ScrollReveal from './ui/ScrollReveal';
 
-const TeamPage: React.FC = () => {
+// Updated to accept onNavigate prop to link to Careers
+interface TeamPageProps {
+    onNavigate?: (page: string) => void;
+}
+
+const TeamPage: React.FC<TeamPageProps> = ({ onNavigate }) => {
   const team = [
     { name: "Elena Vos", role: "Founder & CEO", image: "bg-gradient-to-br from-purple-500 to-indigo-500" },
     { name: "Marcus Chen", role: "CTO", image: "bg-gradient-to-br from-cyan-500 to-blue-500" },
@@ -70,7 +75,7 @@ const TeamPage: React.FC = () => {
                  <p className="text-gray-400 mb-8 max-w-xl mx-auto">
                      We are always looking for talented individuals to join our remote-first team. Check out our open positions.
                  </p>
-                 <Button variant="outline">View Openings</Button>
+                 <Button variant="outline" onClick={() => onNavigate?.('careers')}>View Openings</Button>
              </div>
         </div>
 
