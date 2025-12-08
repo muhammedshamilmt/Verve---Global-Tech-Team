@@ -1,10 +1,14 @@
 import React from 'react';
-import { Sparkles, Target, Zap, Globe, Heart, Shield, Users, ArrowUpRight } from 'lucide-react';
+import { Sparkles, Target, Zap, Globe, Heart, Shield, ArrowUpRight } from 'lucide-react';
 import Button from './ui/Button';
 import StaggerText from './ui/StaggerText';
 import ScrollReveal from './ui/ScrollReveal';
 
-const AboutPage: React.FC = () => {
+interface AboutPageProps {
+  onNavigate?: (page: string) => void;
+}
+
+const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
   return (
     <div className="w-full relative overflow-hidden pt-8">
       {/* Added pt-8 so hero content isn't hidden behind fixed navbar */}
@@ -143,7 +147,11 @@ const AboutPage: React.FC = () => {
                         <p className="text-gray-400">The diverse team making it all happen.</p>
                     </ScrollReveal>
                     <ScrollReveal delay={0.2}>
-                        <Button variant="outline" className="hidden md:flex gap-2">
+                        <Button 
+                            variant="outline" 
+                            className="hidden md:flex gap-2"
+                            onClick={() => onNavigate?.('careers')}
+                        >
                             Join the Team <ArrowUpRight size={16} />
                         </Button>
                     </ScrollReveal>
@@ -197,7 +205,7 @@ const AboutPage: React.FC = () => {
                        We are a remote-first company with hubs in San Francisco, London, Tokyo, and Berlin. We believe talent is distributed equally, opportunity is not.
                    </p>
                    <div className="pt-4">
-                       <Button variant="primary">View Open Positions</Button>
+                       <Button variant="primary" onClick={() => onNavigate?.('careers')}>View Open Positions</Button>
                    </div>
                </div>
           </ScrollReveal>

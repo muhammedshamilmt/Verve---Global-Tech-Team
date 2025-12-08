@@ -68,13 +68,13 @@ const App: React.FC = () => {
       case 'features': return <FeaturesPage />;
       case 'pricing': return <PricingPage onNavigate={handleNavigate} />;
       case 'contact': return <ContactPage />;
-      case 'about': return <AboutPage />;
+      case 'about': return <AboutPage onNavigate={handleNavigate} />;
       
       // New Pages
       case 'plans': return <PlansPage onNavigate={handleNavigate} />;
       case 'reviews': return <ReviewsPage />;
-      case 'why-us': return <WhyUsPage />;
-      case 'team': return <TeamPage />; // Updated to pass navigate prop in next step
+      case 'why-us': return <WhyUsPage onNavigate={handleNavigate} />;
+      case 'team': return <TeamPage onNavigate={handleNavigate} />;
       case 'careers': return <CareersPage onNavigate={handleNavigate} />;
       case 'changelog': return <ChangelogPage />;
       case 'licensing': return <LicensingPage />;

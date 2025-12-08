@@ -67,7 +67,12 @@ const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
         </ScrollReveal>
 
         <ScrollReveal delay={0.4} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-             <Button className="w-full sm:w-auto px-8 py-4 shadow-[0_0_30px_rgba(94,234,212,0.3)]">View Open Roles</Button>
+             <Button 
+                className="w-full sm:w-auto px-8 py-4 shadow-[0_0_30px_rgba(94,234,212,0.3)]"
+                onClick={() => document.getElementById('openings')?.scrollIntoView({ behavior: 'smooth' })}
+             >
+                 View Open Roles
+             </Button>
              <Button variant="outline" className="w-full sm:w-auto px-8 py-4" onClick={() => onNavigate?.('about')}>Read Our Story</Button>
         </ScrollReveal>
 
@@ -98,7 +103,7 @@ const CareersPage: React.FC<CareersPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 3. Open Positions */}
-      <section className="py-24 max-w-[1000px] mx-auto px-6 lg:px-12">
+      <section id="openings" className="py-24 max-w-[1000px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-semibold text-white mb-4">Open Positions</h2>
               <p className="text-gray-400">Join our growing team.</p>
