@@ -1,37 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import FeaturesSection from './components/FeaturesSection';
-import GridFeaturesSection from './components/GridFeaturesSection';
-import StatsStrip from './components/StatsStrip';
-import StorySection from './components/StorySection';
-import SlackIntegrationSection from './components/SlackIntegrationSection';
-import PricingSection from './components/PricingSection';
 import Footer from './components/Footer';
-import AboutPage from './components/AboutPage';
-import FeaturesPage from './components/FeaturesPage';
-import ContactPage from './components/ContactPage';
-import PricingPage from './components/PricingPage';
-import LoginPage from './components/LoginPage';
-import SignupPage from './components/SignupPage';
-import ForgotPasswordPage from './components/ForgotPasswordPage';
-import VerifyOtpPage from './components/VerifyOtpPage';
-import ResetPasswordPage from './components/ResetPasswordPage';
-import PasswordSuccessPage from './components/PasswordSuccessPage';
-import TermsPage from './components/TermsPage';
-import PrivacyPolicyPage from './components/PrivacyPolicyPage';
 import Preloader from './components/Preloader';
-import PlansPage from './components/PlansPage';
-import ReviewsPage from './components/ReviewsPage';
-import WhyUsPage from './components/WhyUsPage';
-import TeamPage from './components/TeamPage';
-import NotFoundPage from './components/NotFoundPage';
-import ChangelogPage from './components/ChangelogPage';
-import LicensingPage from './components/LicensingPage';
-import CheckoutPage from './components/CheckoutPage';
-import PaymentSuccessPage from './components/PaymentSuccessPage';
-import DashboardPage from './components/DashboardPage';
-import CareersPage from './components/CareersPage';
+
+// Import Pages
+import Landing from './pages/Landing';
+import About from './pages/About';
+import Features from './pages/Features';
+import Contact from './pages/Contact';
+import Pricing from './pages/Pricing';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import ForgotPassword from './pages/ForgotPassword';
+import VerifyOtp from './pages/VerifyOtp';
+import ResetPassword from './pages/ResetPassword';
+import PasswordSuccess from './pages/PasswordSuccess';
+import Terms from './pages/Terms';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Plans from './pages/Plans';
+import Reviews from './pages/Reviews';
+import WhyUs from './pages/WhyUs';
+import Team from './pages/Team';
+import Careers from './pages/Careers';
+import NotFound from './pages/NotFound';
+import Changelog from './pages/Changelog';
+import Licensing from './pages/Licensing';
+import Checkout from './pages/Checkout';
+import PaymentSuccess from './pages/PaymentSuccess';
+import Dashboard from './pages/Dashboard';
 
 type Page = 
   | 'home' | 'about' | 'features' | 'pricing' | 'contact' 
@@ -65,53 +61,43 @@ const App: React.FC = () => {
 
   const renderContent = () => {
     switch (currentPage) {
-      case 'features': return <FeaturesPage />;
-      case 'pricing': return <PricingPage onNavigate={handleNavigate} />;
-      case 'contact': return <ContactPage />;
-      case 'about': return <AboutPage onNavigate={handleNavigate} />;
+      case 'features': return <Features />;
+      case 'pricing': return <Pricing onNavigate={handleNavigate} />;
+      case 'contact': return <Contact />;
+      case 'about': return <About onNavigate={handleNavigate} />;
       
       // New Pages
-      case 'plans': return <PlansPage onNavigate={handleNavigate} />;
-      case 'reviews': return <ReviewsPage />;
-      case 'why-us': return <WhyUsPage onNavigate={handleNavigate} />;
-      case 'team': return <TeamPage onNavigate={handleNavigate} />;
-      case 'careers': return <CareersPage onNavigate={handleNavigate} />;
-      case 'changelog': return <ChangelogPage />;
-      case 'licensing': return <LicensingPage />;
-      case '404': return <NotFoundPage onNavigate={handleNavigate} />;
+      case 'plans': return <Plans onNavigate={handleNavigate} />;
+      case 'reviews': return <Reviews />;
+      case 'why-us': return <WhyUs onNavigate={handleNavigate} />;
+      case 'team': return <Team onNavigate={handleNavigate} />;
+      case 'careers': return <Careers onNavigate={handleNavigate} />;
+      case 'changelog': return <Changelog />;
+      case 'licensing': return <Licensing />;
+      case '404': return <NotFound onNavigate={handleNavigate} />;
 
       // Auth Flow
-      case 'login': return <LoginPage onNavigate={handleNavigate} />;
-      case 'signup': return <SignupPage onNavigate={handleNavigate} />;
-      case 'forgot-password': return <ForgotPasswordPage onNavigate={handleNavigate} />;
-      case 'verify-otp': return <VerifyOtpPage onNavigate={handleNavigate} />;
-      case 'reset-password': return <ResetPasswordPage onNavigate={handleNavigate} />;
-      case 'password-success': return <PasswordSuccessPage onNavigate={handleNavigate} />;
+      case 'login': return <Login onNavigate={handleNavigate} />;
+      case 'signup': return <Signup onNavigate={handleNavigate} />;
+      case 'forgot-password': return <ForgotPassword onNavigate={handleNavigate} />;
+      case 'verify-otp': return <VerifyOtp onNavigate={handleNavigate} />;
+      case 'reset-password': return <ResetPassword onNavigate={handleNavigate} />;
+      case 'password-success': return <PasswordSuccess onNavigate={handleNavigate} />;
       
       // Payment Flow
-      case 'checkout': return <CheckoutPage onNavigate={handleNavigate} />;
-      case 'payment-success': return <PaymentSuccessPage onNavigate={handleNavigate} />;
+      case 'checkout': return <Checkout onNavigate={handleNavigate} />;
+      case 'payment-success': return <PaymentSuccess onNavigate={handleNavigate} />;
 
       // Dashboard
-      case 'dashboard': return <DashboardPage onNavigate={handleNavigate} />;
+      case 'dashboard': return <Dashboard onNavigate={handleNavigate} />;
 
       // Legal
-      case 'terms': return <TermsPage onNavigate={handleNavigate} />;
-      case 'privacy': return <PrivacyPolicyPage onNavigate={handleNavigate} />;
+      case 'terms': return <Terms onNavigate={handleNavigate} />;
+      case 'privacy': return <PrivacyPolicy onNavigate={handleNavigate} />;
 
       case 'home':
       default:
-        return (
-          <>
-            <HeroSection />
-            <StatsStrip />
-            <FeaturesSection />
-            <StorySection />
-            <SlackIntegrationSection />
-            <GridFeaturesSection />
-            <PricingSection onNavigate={handleNavigate} />
-          </>
-        );
+        return <Landing onNavigate={handleNavigate} />;
     }
   };
 
